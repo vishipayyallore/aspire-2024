@@ -2,6 +2,10 @@ using SupportTickets.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddAzureBlobService("BlobConnection");
+builder.AddAzureQueueService("QueueConnection");
+
+// Add Components before the call to AddServiceDefaults
 builder.AddServiceDefaults();
 
 // Add services to the container.
