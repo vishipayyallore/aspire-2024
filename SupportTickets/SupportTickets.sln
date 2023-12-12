@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportTickets.AppHost", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupportTickets.ServiceDefaults", "SupportTickets.ServiceDefaults\SupportTickets.ServiceDefaults.csproj", "{9406829B-278C-440D-95FB-55FB2D3C4B65}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupportTickets.Worker", "SupportTickets.Worker\SupportTickets.Worker.csproj", "{AF4F195B-C6AC-4300-BFDE-E22067A4A1BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9406829B-278C-440D-95FB-55FB2D3C4B65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9406829B-278C-440D-95FB-55FB2D3C4B65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9406829B-278C-440D-95FB-55FB2D3C4B65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4F195B-C6AC-4300-BFDE-E22067A4A1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4F195B-C6AC-4300-BFDE-E22067A4A1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4F195B-C6AC-4300-BFDE-E22067A4A1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4F195B-C6AC-4300-BFDE-E22067A4A1BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
