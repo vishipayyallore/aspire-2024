@@ -4,7 +4,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-SupportTickets.Worker-71b15960-6565-418b-8ddb-fe1e5985efb3</UserSecretsId>
+    <UserSecretsId>8d4b86f7-DotNet-Aspire</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
