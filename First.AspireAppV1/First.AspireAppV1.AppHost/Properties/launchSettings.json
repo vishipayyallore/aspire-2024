@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "First.AspireAppV1.AppHost": {
+      "applicationUrl": "https://localhost:17209;http://localhost:15233",
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21118",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22000"
+      },
+      "launchBrowser": true
+    },
+    "http": {
+      "applicationUrl": "http://localhost:15233",
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19024",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20074"
+      },
+      "launchBrowser": true
+    }
+  }
+}
