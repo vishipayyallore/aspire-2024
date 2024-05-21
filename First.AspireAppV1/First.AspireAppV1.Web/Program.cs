@@ -1,3 +1,5 @@
+using Azure.Storage.Blobs;
+using Azure.Storage.Queues;
 using First.AspireAppV1.Web;
 using First.AspireAppV1.Web.Components;
 
@@ -28,6 +30,19 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else
+{
+    // In development, create the blob container and queue if they don't exist.
+    var blobService = app.Services.GetRequiredService<BlobServiceClient>();
+    var docsContainer = blobService.GetBlobContainerClient("fileuploads");
+
+    await docsContainer.CreateIfNotExistsAsync();
+
+    var queueService = app.Services.GetRequiredService<QueueServiceClient>();
+    var queueClient = queueService.GetQueueClient("tickets");
+
+    await queueClient.CreateIfNotExistsAsync();
 }
 
 app.UseHttpsRedirection();
