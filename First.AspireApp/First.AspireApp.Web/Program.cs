@@ -1,11 +1,24 @@
 using First.AspireApp.Web;
 using First.AspireApp.Web.Components;
+using Azure.Storage.Blobs;
+using Azure.Storage.Queues;
+using Microsoft.Extensions.Azure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 builder.AddRedisOutputCache("cache");
+
+builder.AddAzureBlobClient("blob", options =>
+{
+    options.ConnectionString = builder.Configuration["ConnectionStrings:BlobConnection"];
+});
+
+builder.AddAzureQueueClient("queue", options =>
+{
+    options.ConnectionString = builder.Configuration["ConnectionStrings:QueueConnection"];
+});
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
