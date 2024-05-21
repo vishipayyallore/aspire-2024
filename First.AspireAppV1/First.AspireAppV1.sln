@@ -10,8 +10,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "First.AspireAppV1.ApiServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "First.AspireAppV1.Web", "First.AspireAppV1.Web\First.AspireAppV1.Web.csproj", "{193E4AB6-1741-4948-87F4-B5340390A5B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "First.AspireAppV1.Tests", "First.AspireAppV1.Tests\First.AspireAppV1.Tests.csproj", "{0E1B32CD-A987-47BA-92B3-A506495B560E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,10 +32,6 @@ Global
 		{193E4AB6-1741-4948-87F4-B5340390A5B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{193E4AB6-1741-4948-87F4-B5340390A5B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{193E4AB6-1741-4948-87F4-B5340390A5B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E1B32CD-A987-47BA-92B3-A506495B560E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E1B32CD-A987-47BA-92B3-A506495B560E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E1B32CD-A987-47BA-92B3-A506495B560E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E1B32CD-A987-47BA-92B3-A506495B560E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
