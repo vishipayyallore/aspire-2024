@@ -7,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 builder.AddRedisOutputCache("cache");
 
+builder.AddAzureBlobClient("BlobConnectionName");
+builder.AddAzureQueueClient("QueueConnectionName");
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
