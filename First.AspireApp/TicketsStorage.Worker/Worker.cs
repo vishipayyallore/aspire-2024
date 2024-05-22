@@ -1,4 +1,5 @@
 using Azure.Storage.Queues;
+using Azure.Storage.Queues.Models;
 using Microsoft.Extensions.Logging;
 
 namespace TicketsStorage.Worker;
@@ -11,13 +12,27 @@ public class Worker(ILogger<Worker> logger, QueueServiceClient client) : Backgro
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        var queueClient = _client.GetQueueClient("tickets");
         while (!stoppingToken.IsCancellationRequested)
         {
-            if (_logger.IsEnabled(LogLevel.Information))
+            QueueMessage[] messages =
+                await queueClient.ReceiveMessagesAsync(
+                    maxMessages: 25, cancellationToken: stoppingToken);
+
+            foreach (var message in messages)
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                logger.LogInformation(
+                    "Message from queue: {Message}", message.MessageText);
+
+                await queueClient.DeleteMessageAsync(
+                    message.MessageId,
+                    message.PopReceipt,
+                    cancellationToken: stoppingToken);
             }
-            await Task.Delay(1000, stoppingToken);
+
+            // TODO: Determine an appropriate time to wait 
+            // before checking for more messages.
+            await Task.Delay(TimeSpan.FromSeconds(15), stoppingToken);
         }
     }
 }
