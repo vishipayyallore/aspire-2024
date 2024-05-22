@@ -48,10 +48,10 @@ else
 
     await queueClient.CreateIfNotExistsAsync();
 
-    using var scope = app.Services.CreateScope();
-    var context = scope.ServiceProvider.GetRequiredService<SupportTicketDbContext>();
-    await context.Database.EnsureCreatedAsync();
-    await context.Database.MigrateAsync(); // Use Migrate() to apply migrations
+    //using var scope = app.Services.CreateScope();
+    //var context = scope.ServiceProvider.GetRequiredService<SupportTicketDbContext>();
+    //await context.Database.EnsureCreatedAsync();
+    //await context.Database.MigrateAsync(); // Use Migrate() to apply migrations
 }
 
 app.UseHttpsRedirection();

@@ -66,6 +66,10 @@
 
         await queueClient.SendMessageAsync(
              $"{Ticket.Title} - {Ticket.Description}");
+
+        await context.Tickets.AddAsync(new SupportTicketDto { Title = Ticket.Title, Description = Ticket.Description});
+        await context.SaveChangesAsync();
+        Tickets = await context.Tickets.ToListAsync();
     }
 
     private void ClearForm() => Ticket = new();
