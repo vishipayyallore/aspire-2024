@@ -1,22 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
-    <UserSecretsId>404656ba-ebb0-4d91-9614-7ef4667c0f38</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<IsAspireHost>true</IsAspireHost>
+		<UserSecretsId>8d4b86f7-DotNet-Aspire</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\First.AspireApp.ApiService\First.AspireApp.ApiService.csproj" />
-    <ProjectReference Include="..\First.AspireApp.Web\First.AspireApp.Web.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\First.AspireApp.ApiService\First.AspireApp.ApiService.csproj" />
+		<ProjectReference Include="..\First.AspireApp.Web\First.AspireApp.Web.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
-    <PackageReference Include="Aspire.Hosting.Redis" Version="8.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Aspire.Hosting.AppHost" Version="8.0.0" />
+		<PackageReference Include="Aspire.Hosting.Redis" Version="8.0.0" />
+	</ItemGroup>
 
 </Project>
