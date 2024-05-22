@@ -12,6 +12,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\First.AspireApp.ApiService\First.AspireApp.ApiService.csproj" />
 		<ProjectReference Include="..\First.AspireApp.Web\First.AspireApp.Web.csproj" />
+		<ProjectReference Include="..\TicketsStorage.Worker\TicketsStorage.Worker.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -9,4 +9,6 @@ builder.AddProject<Projects.First_AspireApp_Web>("webfrontend")
     .WithReference(cache)
     .WithReference(apiService);
 
+builder.AddProject<Projects.TicketsStorage_Worker>("ticketsstorage-worker");
+
 builder.Build().Run();
