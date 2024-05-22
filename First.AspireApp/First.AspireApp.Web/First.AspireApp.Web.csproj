@@ -12,9 +12,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.*" />
 		<PackageReference Include="Aspire.StackExchange.Redis.OutputCaching" Version="8.0.*" />
 		<PackageReference Include="Aspire.Azure.Storage.Blobs" Version="8.0.*" />
 		<PackageReference Include="Aspire.Azure.Storage.Queues" Version="8.0.*" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.*">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 </Project>
