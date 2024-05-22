@@ -2,12 +2,16 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Queues;
 using First.AspireApp.Web;
 using First.AspireApp.Web.Components;
+using First.AspireApp.Web.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 builder.AddRedisOutputCache("cache");
+
+builder.AddSqlServerDbContext<SupportTicketDbContext>("sqldata");
 
 builder.AddAzureBlobClient("BlobConnectionName");
 builder.AddAzureQueueClient("QueueConnectionName");
@@ -43,6 +47,11 @@ else
     var queueClient = queueService.GetQueueClient("tickets");
 
     await queueClient.CreateIfNotExistsAsync();
+
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<SupportTicketDbContext>();
+    await context.Database.EnsureCreatedAsync();
+    await context.Database.MigrateAsync(); // Use Migrate() to apply migrations
 }
 
 app.UseHttpsRedirection();
