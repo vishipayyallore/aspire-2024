@@ -4,5 +4,5 @@ name: First.AspireApp
 services:  
   app:
     language: dotnet
-    project: .\First.AspireApp.AppHost\First.AspireApp.AppHost.csproj
+    project: .\First.AspireApp.AppHost.csproj
     host: containerapp
