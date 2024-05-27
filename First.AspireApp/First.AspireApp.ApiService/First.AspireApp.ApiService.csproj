@@ -4,6 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<UserSecretsId>8d4b86f7-DotNet-Aspire</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>

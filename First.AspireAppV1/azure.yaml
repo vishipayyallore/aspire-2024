@@ -1,8 +1,49 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
+************************************************************************************************************************************************************************************
+Milestone - 1 - Fondational Block - 80 Hours
+************************************************************************************************************************************************************************************
+1. Introduction to Programming
+2. Dev Setup - Tooling and Environment
+3. Git, Git Bash, GitHub, GitHub Desktop
+4. Html, Css, and JavaScript
+5. C#
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-name: First.AspireAppV1
-services:  
-  app:
-    language: dotnet
-    project: .\First.AspireAppV1.AppHost\First.AspireAppV1.AppHost.csproj
-    host: containerapp
+************************************************************************************************************************************************************************************
+Milestone - 2 - Creating Web Applications and Hosting in Azure - 25 Hours
+************************************************************************************************************************************************************************************
+
+1. Application with Fetch API (https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) - 5 Hours
+2. ASP.Net Core Razor Pages - 10 Hours
+3. Hosting it in Azure PaSS - 10 Hours
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+************************************************************************************************************************************************************************************
+Milestone - 3 - Creating Web API, and consume inside Web Applications and Hosting in Azure - XX Hours
+************************************************************************************************************************************************************************************
+
+1. Minimal API - 10 Hours
+2. Controller API - 10 Hours
+3. Open AI / Azure Open AI - 10 Hours
+4. Synchronous communication between Services (with Polly) - 5 Hours
+5. Asnchronous communication between Services with Azure Queue / Service Bus, and RabbitMQ - 5 Hours
+6. Azure Functions - 5 Hours
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Milestone 1: - Create a Web Application, and consume existing Web API
+Milestone 2: - Create a Web API, and consume it in the Web Application
+Milestone 3: - Event Driven Architecture / Async communication between Web APIs OR Services
+
+Available Ingridents
+=============================
+
+
+
+
+
+
+
+

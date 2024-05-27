@@ -10,6 +10,7 @@
 @inject SupportTicketDbContext context
 @inject BlobServiceClient BlobClient
 @inject QueueServiceClient QueueServiceClient
+@inject ILogger<RaiseTicket> Logger
 
 <PageTitle>Home</PageTitle>
 
@@ -54,6 +55,7 @@
 
     private async Task HandleValidSubmit()
     {
+        Logger.LogInformation("Uploading file to blob storage");
         var docsContainer = BlobClient.GetBlobContainerClient("fileuploads");
 
         // Upload file to blob storage
