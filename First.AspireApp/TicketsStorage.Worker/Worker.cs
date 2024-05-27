@@ -12,16 +12,19 @@ public class Worker(ILogger<Worker> logger, QueueServiceClient client) : Backgro
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        logger.BeginScope("Worker is starting.");
+
         var queueClient = _client.GetQueueClient("tickets");
         while (!stoppingToken.IsCancellationRequested)
         {
+            logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             QueueMessage[] messages =
                 await queueClient.ReceiveMessagesAsync(
                     maxMessages: 25, cancellationToken: stoppingToken);
 
             foreach (var message in messages)
             {
-                logger.LogInformation(
+                _logger.LogInformation(
                     "Message from queue: {Message}", message.MessageText);
 
                 await queueClient.DeleteMessageAsync(
@@ -30,6 +33,7 @@ public class Worker(ILogger<Worker> logger, QueueServiceClient client) : Backgro
                     cancellationToken: stoppingToken);
             }
 
+            logger.LogInformation("Worker is waiting for more messages.");
             // TODO: Determine an appropriate time to wait 
             // before checking for more messages.
             await Task.Delay(TimeSpan.FromSeconds(15), stoppingToken);
