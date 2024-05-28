@@ -75,7 +75,9 @@ public static class Extensions
         // Uncomment the following lines to enable the Azure Monitor exporter (requires the Azure.Monitor.OpenTelemetry.AspNetCore package)
         if (!string.IsNullOrEmpty(builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]))
         {
-            builder.Services.AddOpenTelemetry().UseAzureMonitor();
+            builder.Services.AddOpenTelemetry()
+                .UseAzureMonitor()
+                .WithMetrics(metrics => metrics.AddPrometheusExporter(options => options.DisableTotalNameSuffixForCounters = true));
         }
 
         return builder;
