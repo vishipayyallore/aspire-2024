@@ -57,20 +57,22 @@
     {
         Logger.LogInformation("Uploading file to blob storage");
         var docsContainer = BlobClient.GetBlobContainerClient("fileuploads");
+        var blobClient = docsContainer.GetBlobClient(Ticket.Document.FileName);
 
-        // Upload file to blob storage
-        await docsContainer.UploadBlobAsync(
-            Ticket.Document.FileName,
-            Ticket.Document.OpenReadStream());
+        // Upload file to blob storage with overwrite option
+        await blobClient.UploadAsync(Ticket.Document.OpenReadStream(), overwrite: true);
+        Logger.LogInformation("File uploaded successfully.");
 
         // Send message to queue
         var queueClient = QueueServiceClient.GetQueueClient("tickets");
 
-        await queueClient.SendMessageAsync(
-             $"{Ticket.Title} - {Ticket.Description}");
+        await queueClient.SendMessageAsync($"{Ticket.Title} - {Ticket.Description}");
 
-        await context.Tickets.AddAsync(new SupportTicketDto { Title = Ticket.Title, Description = Ticket.Description});
+        var newSupportTicket = new SupportTicketDto { Title = Ticket.Title, Description = Ticket.Description, AssignedToName = "Unassigned" };
+
+        await context.Tickets.AddAsync(newSupportTicket);
         await context.SaveChangesAsync();
+
         Tickets = await context.Tickets.ToListAsync();
     }
 

@@ -1,5 +1,16 @@
 # Next Steps after `azd init`
 
+## Database migrations
+
+```powershell
+dotnet tool install --global dotnet-ef
+dotnet tool update --global dotnet-ef
+
+dotnet ef migrations add "Added Two Columns"
+
+dotnet ef database update
+```
+
 ## Table of Contents
 
 1. [Next Steps](#next-steps)
@@ -29,7 +40,7 @@ To troubleshoot any issues, see [troubleshooting](#troubleshooting).
 To describe the infrastructure and application, an `azure.yaml` was added with the following directory structure:
 
 ```yaml
-- azure.yaml     # azd project configuration
+- azure.yaml # azd project configuration
 ```
 
 This file contains a single service, which references your project's App Host. When needed, `azd` generates the required infrastructure as code in memory and uses it.
@@ -46,13 +57,13 @@ If you do this, some additional directories will be created:
 
 In addition, for each project resource referenced by your app host, a `containerApp.tmpl.yaml` file will be created in a directory named `manifests` next the project file. This file contains the infrastructure as code for running the project on Azure Container Apps.
 
-*Note*: Once you have synthesized your infrastructure to disk, changes made to your App Host will not be reflected in the infrastructure. You can re-generate the infrastructure by running `azd infra synth` again. It will prompt you before overwriting files. You can pass `--force` to force `azd infra synth` to overwrite the files without prompting.
+_Note_: Once you have synthesized your infrastructure to disk, changes made to your App Host will not be reflected in the infrastructure. You can re-generate the infrastructure by running `azd infra synth` again. It will prompt you before overwriting files. You can pass `--force` to force `azd infra synth` to overwrite the files without prompting.
 
-*Note*: `azd infra synth` is currently an alpha feature and must be explicitly enabled by running `azd config set alpha.infraSynth on`. You only need to do this once.
+_Note_: `azd infra synth` is currently an alpha feature and must be explicitly enabled by running `azd config set alpha.infraSynth on`. You only need to do this once.
 
 ## Billing
 
-Visit the *Cost Management + Billing* page in Azure Portal to track current spend. For more information about how you're billed, and how you can monitor the costs incurred in your Azure subscriptions, visit [billing overview](https://learn.microsoft.com/azure/developer/intro/azure-developer-billing).
+Visit the _Cost Management + Billing_ page in Azure Portal to track current spend. For more information about how you're billed, and how you can monitor the costs incurred in your Azure subscriptions, visit [billing overview](https://learn.microsoft.com/azure/developer/intro/azure-developer-billing).
 
 ## Troubleshooting
 
@@ -65,9 +76,9 @@ A: Your service may have failed to start, or it may be missing some configuratio
 3. Click on the failing revision under "Revisions with Issues".
 4. Review "Status details" for more information about the type of failure.
 5. Observe the log outputs from Console log stream and System log stream to identify any errors.
-6. If logs are written to disk, use *Console* in the navigation to connect to a shell within the running container.
+6. If logs are written to disk, use _Console_ in the navigation to connect to a shell within the running container.
 
-For more troubleshooting information, visit [Container Apps troubleshooting](https://learn.microsoft.com/azure/container-apps/troubleshooting). 
+For more troubleshooting information, visit [Container Apps troubleshooting](https://learn.microsoft.com/azure/container-apps/troubleshooting).
 
 ### Additional information
 
