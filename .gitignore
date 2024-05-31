@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+First.AspireApp/First.AspireApp.ApiService/appsettings.json
+First.AspireApp/First.AspireApp.Web/appsettings.json
+First.AspireApp/TicketsStorage.Worker/appsettings.json
+First.AspireApp/First.AspireApp.ApiService/appsettings.json
