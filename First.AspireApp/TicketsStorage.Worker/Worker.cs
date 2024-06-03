@@ -1,17 +1,18 @@
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
-using Microsoft.Extensions.Logging;
-using System.Text.Json;
 using System.Text;
-using TicketsStorage.Worker.Dtos;
+using System.Text.Json;
+using TicketsStorage.Worker.Data;
+using TicketsStorage.Worker.Data.Dtos;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TicketsStorage.Worker;
 
-public class Worker(ILogger<Worker> logger, QueueServiceClient client) : BackgroundService
+public class Worker(ILogger<Worker> logger, QueueServiceClient client, IServiceProvider serviceProvider) : BackgroundService
 {
     private readonly ILogger<Worker> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-
     private readonly QueueServiceClient _client = client ?? throw new ArgumentNullException(nameof(client));
+    private readonly IServiceProvider _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -34,10 +35,26 @@ public class Worker(ILogger<Worker> logger, QueueServiceClient client) : Backgro
                 string decodedMessage = Encoding.UTF8.GetString(Convert.FromBase64String(message.MessageText));
 
                 // Deserialize the JSON message into a SupportTicketDto object
-                SupportTicketDto supportTicket = JsonSerializer.Deserialize<SupportTicketDto>(decodedMessage)!;
+                SupportTicketDto supportTicketDto = JsonSerializer.Deserialize<SupportTicketDto>(decodedMessage)!;
 
                 // Now you can use the supportTicket object as needed
-                _logger.LogInformation("Received support ticket with title: {Title}", supportTicket.Title);
+                _logger.LogInformation("Received support ticket with title: {Title}", supportTicketDto.Title);
+
+                // Create a new scope
+                using (var scope = _serviceProvider.CreateScope())
+                {
+                    var dbContext = scope.ServiceProvider.GetRequiredService<SupportTicketDbContext>();
+
+                    // Update the support ticket in the database
+                    var supportTicket = await dbContext.Tickets.FindAsync(supportTicketDto.Id);
+                    if (supportTicket != null)
+                    {
+                        supportTicket.AssignedToName = $"Name-{Guid.NewGuid():X}";
+                        supportTicket.AssignedAt = DateTime.Now;
+                        dbContext.Tickets.Update(supportTicket);
+                        await dbContext.SaveChangesAsync();
+                    }
+                }
 
                 await queueClient.DeleteMessageAsync(
                     message.MessageId,

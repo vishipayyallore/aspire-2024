@@ -3,7 +3,6 @@ using Azure.Storage.Queues;
 using First.AspireApp.Web;
 using First.AspireApp.Web.Components;
 using First.AspireApp.Web.Data;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
