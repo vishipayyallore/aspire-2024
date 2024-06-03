@@ -1,6 +1,9 @@
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using Microsoft.Extensions.Logging;
+using System.Text.Json;
+using System.Text;
+using TicketsStorage.Worker.Dtos;
 
 namespace TicketsStorage.Worker;
 
@@ -26,6 +29,15 @@ public class Worker(ILogger<Worker> logger, QueueServiceClient client) : Backgro
             {
                 _logger.LogInformation(
                     "Message from queue: {Message}", message.MessageText);
+
+                // Decode the base64-encoded message
+                string decodedMessage = Encoding.UTF8.GetString(Convert.FromBase64String(message.MessageText));
+
+                // Deserialize the JSON message into a SupportTicketDto object
+                SupportTicketDto supportTicket = JsonSerializer.Deserialize<SupportTicketDto>(decodedMessage)!;
+
+                // Now you can use the supportTicket object as needed
+                _logger.LogInformation("Received support ticket with title: {Title}", supportTicket.Title);
 
                 await queueClient.DeleteMessageAsync(
                     message.MessageId,
