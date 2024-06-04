@@ -6,6 +6,7 @@
 @using First.AspireApp.Web.Data
 @using First.AspireApp.Web.Data.Dtos
 @using Microsoft.EntityFrameworkCore
+@using System.Text.Json
 
 @inject SupportTicketDbContext context
 @inject BlobServiceClient BlobClient
@@ -63,15 +64,18 @@
         await blobClient.UploadAsync(Ticket.Document.OpenReadStream(), overwrite: true);
         Logger.LogInformation("File uploaded successfully.");
 
-        // Send message to queue
-        var queueClient = QueueServiceClient.GetQueueClient("tickets");
-
-        await queueClient.SendMessageAsync($"{Ticket.Title} - {Ticket.Description}");
-
+        // Save it in the database
         var newSupportTicket = new SupportTicketDto { Title = Ticket.Title, Description = Ticket.Description, AssignedToName = "Unassigned" };
 
         await context.Tickets.AddAsync(newSupportTicket);
         await context.SaveChangesAsync();
+
+        // Send message to queue
+        var queueClient = QueueServiceClient.GetQueueClient("tickets");
+
+        var jsonString = JsonSerializer.Serialize(newSupportTicket);
+        // await queueClient.SendMessageAsync(jsonString);
+        var responseFromQ = await queueClient.SendMessageAsync(Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(jsonString)));
 
         Tickets = await context.Tickets.ToListAsync();
     }
