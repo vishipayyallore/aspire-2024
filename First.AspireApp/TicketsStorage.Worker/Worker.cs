@@ -4,7 +4,6 @@ using System.Text;
 using System.Text.Json;
 using TicketsStorage.Worker.Data;
 using TicketsStorage.Worker.Data.Dtos;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace TicketsStorage.Worker;
 
