@@ -11,7 +11,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "https": {
+    "Sample3_0610.ApiService": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
